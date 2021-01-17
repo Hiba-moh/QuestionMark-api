@@ -57,7 +57,7 @@ app.use (function (req, res, next) {
 //******************************************                ROUTES              ****************************************************************
 
 app.get ('/', (req, res) => {
-  res.send ('Homepage here');
+  response.sendFile (__dirname + '/index.html');
 });
 
 app.post ('/validEmail', async (req, res) => {
@@ -666,6 +666,7 @@ app.get ('/modules', async (req, res) => {
   if (typeof modules != undefined) res.json (modules);
   else res.send ('Not working');
 });
+
 app.post ('/ask-question', async (req, res) => {
   const quesObj = req.body;
   // console.log(quesObj);
