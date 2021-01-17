@@ -57,7 +57,7 @@ app.use (function (req, res, next) {
 //******************************************                ROUTES              ****************************************************************
 
 app.get ('/', (req, res) => {
-  response.sendFile (__dirname + '/index.html');
+  res.sendFile (__dirname + '/index.html');
 });
 
 app.post ('/validEmail', async (req, res) => {
