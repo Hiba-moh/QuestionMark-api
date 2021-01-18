@@ -452,7 +452,7 @@ app.post ('/comments', async (req, res) => {
 });
 
 //******************************************************************************************************************************************
-//***************************************             Endoint to get all the comments for an answer             *********************************************
+//***************************************             Endoint to get all the comments              *********************************************
 
 app.get ('/comments', async (req, res) => {
   try {
@@ -471,7 +471,7 @@ app.get ('/comments', async (req, res) => {
 
 app.get ('/likes', async (req, res) => {
   try {
-    const displayLikes = await pool.query ('select * from likes');
+    const displayLikes = await pool.query ('select *from likes');
 
     res.json (displayLikes.rows).status (200);
   } catch (err) {
