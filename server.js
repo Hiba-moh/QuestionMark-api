@@ -314,7 +314,7 @@ app.get ('/userAsked/:id', async (req, res) => {
   const id = parseInt (req.params.id);
   try {
     const userAskedQ = await pool.query (
-      'select question.id,question.question, question.answers where question.users_id = $1 ',
+      'select question.id,question.question,question.answers from question where question.users_id = $1 ',
       [id]
     );
     //   const AnswersForuserAskedQ = await pool.query (
