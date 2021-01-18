@@ -4,7 +4,6 @@ path = require ('path');
 const cors = require ('cors');
 const Pool = require ('pg').Pool;
 const nodemailer = require ('nodemailer');
-// const {query} = require ('express');
 require ('dotenv').config ();
 
 // setting time zone
@@ -33,13 +32,6 @@ const proConfig = {
 const pool = new Pool (
   process.env.NODE_ENV === 'production' ? proConfig : devConfig
 );
-
-//process.env.NODE_ENV  to indicate if our app is in production mode or not which will return production or undefined
-// if (process.env.NODE_ENV === 'production') {
-//serve static content
-//npm run build
-// app.use (express.static (path.join (__dirname, 'client/build')));
-// }
 
 // middleware
 app.use (cors ());
