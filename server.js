@@ -4,7 +4,7 @@ path = require ('path');
 const cors = require ('cors');
 const Pool = require ('pg').Pool;
 const nodemailer = require ('nodemailer');
-const {query} = require ('express');
+// const {query} = require ('express');
 require ('dotenv').config ();
 
 // setting time zone
