@@ -314,9 +314,13 @@ app.get ('/userAsked/:id', async (req, res) => {
   const id = parseInt (req.params.id);
   try {
     const userAskedQ = await pool.query (
-      'select question.id,question.question, question.answers,answer.answer from question inner join answer on question.users_id = answer.users_id where question.users_id = $1 ',
+      'select question.id,question.question, question.answers where question.users_id = $1 ',
       [id]
     );
+    //   const AnswersForuserAskedQ = await pool.query (
+    //   'select question.answers where question.users_id = $1 ',
+    //   [id]
+    // );
     res.json (userAskedQ.rows);
   } catch (err) {
     console.error (err.message);
