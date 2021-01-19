@@ -150,7 +150,7 @@ app.get ('/selectedquestionpage/:id', async (req, res) => {
   const data = {};
   try {
     const checkZero = await pool.query (
-      'UPDATE question SET answers = 0 WHERE answeres < 0',
+      'UPDATE question SET answers = 0 WHERE answers < 0',
       [answer_question_id.rows[0].question_id]
     );
     const selectedquestion = await pool.query (
@@ -355,7 +355,7 @@ app.delete ('/userAnswers/:id', async (req, res) => {
       [answer_question_id.rows[0].question_id]
     );
     const checkZero = await pool.query (
-      'UPDATE question SET answers = 0 WHERE answeres < 0',
+      'UPDATE question SET answers = 0 WHERE answers < 0',
       [answer_question_id.rows[0].question_id]
     );
     const deleteAnswer = await pool.query ('delete from answer where id = $1', [
@@ -385,6 +385,10 @@ app.delete ('/userAsked/:id', async (req, res) => {
     const deleteAnswers = await pool.query (
       'delete from answer where question_id = $1',
       [id]
+    );
+    const checkZero = await pool.query (
+      'UPDATE question SET answers = 0 WHERE answers < 0',
+      [answer_question_id.rows[0].question_id]
     );
     res.json ('Question was deleted');
   } catch (err) {
