@@ -431,7 +431,10 @@ app.post ('/comments', async (req, res) => {
   const question_id = req.body.question_id;
   const answer_id = req.body.answer_id;
   const users_id = req.body.users_id;
-  const date = to_char (req.body.date, 'DD-MM-YYYY hh:mm:ss');
+  const date = req.body.date
+    .toISOString ()
+    .replace (/T/, ' ')
+    .replace (/\..+/, '');
 
   try {
     const commentDescription = await pool.query (
