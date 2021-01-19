@@ -149,6 +149,10 @@ app.get ('/selectedquestionpage/:id', async (req, res) => {
   const id = req.params.id;
   const data = {};
   try {
+    const checkZero = await pool.query (
+      'UPDATE question SET answers = 0 WHERE answeres < 0',
+      [answer_question_id.rows[0].question_id]
+    );
     const selectedquestion = await pool.query (
       `select  question.id, question.question_title,question.module_id, question.question,to_char (question.question_date, 'DD-MM-YYYY') as question_date,question.answers,question.rate,question.views,users.name,users.email from question inner join users on users.id = question.users_id where question.id =$1 `,
       [id]
@@ -348,6 +352,10 @@ app.delete ('/userAnswers/:id', async (req, res) => {
     );
     const decreaseAnswers = await pool.query (
       'UPDATE question SET answers = answers-1 WHERE id = $1',
+      [answer_question_id.rows[0].question_id]
+    );
+    const checkZero = await pool.query (
+      'UPDATE question SET answers = 0 WHERE answeres < 0',
       [answer_question_id.rows[0].question_id]
     );
     const deleteAnswer = await pool.query ('delete from answer where id = $1', [
