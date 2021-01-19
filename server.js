@@ -109,13 +109,11 @@ app.get ('/allquestions', async (req, res) => {
 
 app.get ('/answered', async (req, res) => {
   try {
-    const questionsOnly = await pool.query ('select *from question');
     const answered = await pool.query (
       `select answer.question_id,question.question, to_char(question.question_date,'DD-MM-YYYY') as question_date, question.answers,question.module_id,answer.answer, to_char(answer.answer_date,'DD-MM-YYYY') as answer_date from question inner join answer on question.id = answer.question_id`
     );
     const filter = await pool.query ('select id,module from module');
     const data = {};
-    data.questions = questionsOnly.rows;
     data.answered = answered.rows;
     data.filter = filter.rows;
     res.json (data);
