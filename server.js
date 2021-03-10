@@ -1,6 +1,5 @@
 const express = require ('express');
 const app = express ();
-path = require ('path');
 const cors = require ('cors');
 const Pool = require ('pg').Pool;
 const nodemailer = require ('nodemailer');
@@ -431,7 +430,7 @@ app.post ('/comments', async (req, res) => {
   const question_id = req.body.question_id;
   const answer_id = req.body.answer_id;
   const users_id = req.body.users_id;
-  const date = req.body.date;
+  const date = req.body.date; 
 
   try {
     const commentDescription = await pool.query (
